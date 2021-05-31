@@ -1,0 +1,87 @@
+﻿@model petslogger.Models.tb_user
+
+@{
+    ViewBag.Title = "edit";
+    Layout = "~/Views/Sharet/site_layout.cshtml";
+}
+
+
+
+@using (Html.BeginForm("edit", "Profil", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <br />
+        <br />
+        <h
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+           <p class="control-label col-md-2">Kullanıcı Adı</p>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.user_name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.user_name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <p class="control-label col-md-2">Ad</p>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <p class="control-label col-md-2">Hakkımda</p>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.about, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.about, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <p class="control-label col-md-2">Profil Resmi</p>
+            <div class="col-md-10">
+                <img src="@Model.user_image_url" />
+                <input name="user_image_url" type="file" />
+                
+            </div>
+        </div>
+
+        <div class="form-group">
+            <p class="control-label col-md-2">E Mail</p>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <p class="control-label col-md-2">Şifre</p>
+            <div class="col-md-10">
+               <input name="password" value="@Model.password" type="password" />
+                @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Güncelle" class="btn btn-default" />
+            </div>
+            @if (TempData["mesaj"] != null)
+            {
+                <p>
+                    @TempData["mesaj"].ToString()
+                </p>}
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Vazgeç", "Index")
+</div>
+<br />
+<br />
+<br />

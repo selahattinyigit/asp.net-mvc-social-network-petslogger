@@ -1,0 +1,102 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Sharet/site_layout.cshtml";
+}
+<style>
+    .inner-addon {
+        position: relative;
+    }
+        .inner-addon .glyphicon {
+            position: absolute;
+            padding: 10px;
+            
+        }
+
+    /* align glyph */
+    .left-addon .glyphicon {
+        left: 0px;
+    }
+
+    .right-addon .glyphicon {
+        right: 0px;
+    }
+
+    /* add padding  */
+    .left-addon input {
+        padding-left: 30px;
+    }
+
+    .right-addon input {
+        padding-right: 30px;
+    }
+</style>
+    <section class="newsfeed">
+        <div class="container">
+            <div class="row">
+                <div class="row justify-content-center">
+
+                    <div class="col-md-12">
+                        
+                            @using (Html.BeginForm("detay", "Ara", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {
+                                @Html.AntiForgeryToken()
+
+                        <div class="inner-addon right-addon">
+                            <input type="text" id="name" name="name" class="form-control" placeholder="kullanıcı adını giriniz" />
+                            <input type="submit" value="Ara" class="kafe-btn kafe-btn-mint-small pull-right btn-sm glyphicon" />
+
+                        </div>
+
+
+
+
+
+
+
+
+
+
+                            }
+                        
+                        <br />
+                      
+
+                        <div class="row">
+                            @foreach (var item in ViewBag.oneri)
+                            {
+
+                                <div class="col-lg-3">
+                                    <div class="tr-section">
+                                        <div class="tr-post">
+                                            <div class="entry-header">
+                                                <div class="entry-thumbnail">
+                                                    <a href="/Profil/view/@item.id"><img class="img-fluid" src="@item.user_image_url" alt="Image"></a>
+                                                </div><!-- /entry-thumbnail -->
+                                            </div><!-- /entry-header -->
+                                            
+                                            <div class="post-content">
+                                                <a href="/Profil/view/@item.id">
+                                                    <div class="card-content">
+                                                        <h4>@item.name</h4>
+                                                        <span>@item.user_name</span>
+                                                    </div>
+                                                </a>
+                                                <a href="/Profil/ekle/@item.id" class="kafe-btn kafe-btn-mint-small pull-right btn-sm">Dost Ekle</a>
+
+                                            </div><!-- /.post-content -->
+                                        </div><!-- /.tr-post -->
+                                    </div><!-- /.tr-post -->
+                                </div><!-- /col-sm-3 -->
+
+                            }
+
+                            </div>
+                        </div>
+            </div>
+        </div>
+
+
+    
+            </div></section>
+

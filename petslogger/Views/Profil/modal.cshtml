@@ -1,0 +1,83 @@
+﻿@model petslogger.Models.tb_post
+
+
+
+<div class="row">
+
+    <div class="col-md-8 modal-image">
+        <img class="img-responsive" src="@Model.post_url" alt="Image">
+    </div><!--/ col-md-8 -->
+    <div class="col-md-4 modal-meta">
+        <div class="modal-meta-top">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                <span aria-hidden="true">×</span><span class="sr-only">Kapat</span>
+            </button><!--/ button -->
+            <a class="close" href="#">-<span class="sr-only">Sil</span></a>
+
+            <div class="img-poster clearfix">
+                <a href="Profil/Index"><img class="img-responsive img-circle" src="@Model.tb_user.user_image_url" alt="Image"></a>
+                <strong><a href="">@Model.tb_user.name</a></strong>
+                <span>@Model.since.Value.ToShortDateString()</span><br>
+
+            </div><!--/ img-poster -->
+
+            <ul class="img-comment-list">
+                @foreach (var item in Model.tb_comment)
+                {
+                    <li>
+                        <div class="comment-img">
+                            <img src="@item.tb_user1.user_image_url" class="img-responsive img-circle" alt="Image">
+                        </div>
+                        <div class="comment-text">
+                            <strong><a href="#">@item.tb_user1.user_name</a></strong>
+                            <p>@item.text</p> <span class="date sub-text">on  @item.since.Value.ToShortTimeString()</span>
+                        </div>
+                    </li><!--/ li -->
+                }
+
+
+            </ul><!--/ comment-list -->
+
+            <div class="modal-meta-bottom">
+                <ul>
+                    <li>
+                        <a class="modal-like" href="#"><i class="fa fa-heart"></i></a><span class="modal-one"> @Model.tb_like.Count()</span> |
+                        <a class="modal-comment" href="#"><i class="fa fa-comments"></i></a><span> @Model.tb_comment.Count()</span>
+                    </li>
+                    <li>
+                        <span class="thumb-xs">
+                            <img class="img-responsive img-circle" src="@Model.tb_user.user_image_url" alt="Image">
+                        </span>
+                        <div class="comment-body">
+                            <input class="form-control input-sm" type="text" placeholder="Yorumunu yazın..." id="text" name="text">
+                        </div><!--/ comment-body -->
+                    </li>
+                </ul>
+            </div><!--/ modal-meta-bottom -->
+
+        </div><!--/ modal-meta-top -->
+    </div><!--/ col-md-4 -->
+
+</div><!--/ row -->
+<script>
+    $(document).keyup(function (e) {
+        if ($(".text:focus") && (e.keyCode === 13)) {
+            
+
+
+            $.ajax(
+                {
+                    
+                    type: "POST", //HTTP POST Method
+                    url: "Profil/comment", // Controller/View
+                    data: { //Passing data
+                        text: $("#text").val() //Reading text box values using Jquery
+
+                    }
+
+                });
+            alert('ya!')
+        }
+    });
+
+</script>

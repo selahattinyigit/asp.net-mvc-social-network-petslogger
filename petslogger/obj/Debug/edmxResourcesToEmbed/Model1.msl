@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="dbPetsloggerModelStoreContainer" CdmEntityContainer="dbPetsloggerEntities">
+    <EntitySetMapping Name="tb_comment">
+      <EntityTypeMapping TypeName="dbPetsloggerModel.tb_comment">
+        <MappingFragment StoreEntitySet="tb_comment">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="post_id" ColumnName="post_id" />
+          <ScalarProperty Name="text" ColumnName="text" />
+          <ScalarProperty Name="since" ColumnName="since" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_friend">
+      <EntityTypeMapping TypeName="dbPetsloggerModel.tb_friend">
+        <MappingFragment StoreEntitySet="tb_friend">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="friend_id" ColumnName="friend_id" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_like">
+      <EntityTypeMapping TypeName="dbPetsloggerModel.tb_like">
+        <MappingFragment StoreEntitySet="tb_like">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="post_id" ColumnName="post_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_messages">
+      <EntityTypeMapping TypeName="dbPetsloggerModel.tb_messages">
+        <MappingFragment StoreEntitySet="tb_messages">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="sender_id" ColumnName="sender_id" />
+          <ScalarProperty Name="receiver_id" ColumnName="receiver_id" />
+          <ScalarProperty Name="text" ColumnName="text" />
+          <ScalarProperty Name="since" ColumnName="since" />
+          <ScalarProperty Name="show" ColumnName="show" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_notification">
+      <EntityTypeMapping TypeName="dbPetsloggerModel.tb_notification">
+        <MappingFragment StoreEntitySet="tb_notification">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="sender_id" ColumnName="sender_id" />
+          <ScalarProperty Name="receiver_id" ColumnName="receiver_id" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="action_id" ColumnName="action_id" />
+          <ScalarProperty Name="since" ColumnName="since" />
+          <ScalarProperty Name="show" ColumnName="show" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_post">
+      <EntityTypeMapping TypeName="dbPetsloggerModel.tb_post">
+        <MappingFragment StoreEntitySet="tb_post">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="text" ColumnName="text" />
+          <ScalarProperty Name="post_url" ColumnName="post_url" />
+          <ScalarProperty Name="since" ColumnName="since" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_user">
+      <EntityTypeMapping TypeName="dbPetsloggerModel.tb_user">
+        <MappingFragment StoreEntitySet="tb_user">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="user_name" ColumnName="user_name" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="about" ColumnName="about" />
+          <ScalarProperty Name="user_image_url" ColumnName="user_image_url" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="password" ColumnName="password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

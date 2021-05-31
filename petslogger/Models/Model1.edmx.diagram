@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="40c8a67e285549e3a73f37140e268bb0" Name="Diagram1" ZoomLevel="81">
+        <EntityTypeShape EntityType="dbPetsloggerModel.tb_comment" Width="1.5" PointX="5.25" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbPetsloggerModel.tb_friend" Width="1.5" PointX="3" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbPetsloggerModel.tb_like" Width="1.5" PointX="8.25" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbPetsloggerModel.tb_messages" Width="1.5" PointX="3" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbPetsloggerModel.tb_notification" Width="1.5" PointX="10.5" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbPetsloggerModel.tb_post" Width="1.5" PointX="3" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbPetsloggerModel.tb_user" Width="1.5" PointX="0.75" PointY="7.625" IsExpanded="true" />
+        <AssociationConnector Association="dbPetsloggerModel.FK_tb_comment_tb_post" ManuallyRouted="false" />
+        <AssociationConnector Association="dbPetsloggerModel.FK_tb_notification_tb_comment" ManuallyRouted="false" />
+        <AssociationConnector Association="dbPetsloggerModel.FK_tb_friend_tb_user" ManuallyRouted="false" />
+        <AssociationConnector Association="dbPetsloggerModel.FK_tb_friend_tb_user1" ManuallyRouted="false" />
+        <AssociationConnector Association="dbPetsloggerModel.FK_tb_notification_tb_friend" ManuallyRouted="false" />
+        <AssociationConnector Association="dbPetsloggerModel.FK_tb_like_tb_post" ManuallyRouted="false" />
+        <AssociationConnector Association="dbPetsloggerModel.FK_tb_like_tb_user" ManuallyRouted="false" />
+        <AssociationConnector Association="dbPetsloggerModel.FK_tb_notification_tb_like" ManuallyRouted="false" />
+        <AssociationConnector Association="dbPetsloggerModel.FK_tb_messages_tb_user" ManuallyRouted="false" />
+        <AssociationConnector Association="dbPetsloggerModel.FK_tb_messages_tb_user1" ManuallyRouted="false" />
+        <AssociationConnector Association="dbPetsloggerModel.FK_tb_notification_tb_user" ManuallyRouted="false" />
+        <AssociationConnector Association="dbPetsloggerModel.FK_tb_notification_tb_user1" ManuallyRouted="false" />
+        <AssociationConnector Association="dbPetsloggerModel.FK_tb_post_tb_user" ManuallyRouted="false" />
+        <AssociationConnector Association="dbPetsloggerModel.FK_tb_comment_tb_user1" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

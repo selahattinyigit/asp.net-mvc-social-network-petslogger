@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "detay";
+    Layout = "~/Views/Sharet/site_layout.cshtml";
+}
+
+<section class="followers">
+    <div class="container-fluid">
+
+        <div class="row">
+
+            <div class="col-lg-8 col-lg-offset-2">
+
+                <h3>Arama Sonuçları</h3> <a class="kafe-btn kafe-btn-mint-small" href="/Ara/Index">
+                    <i class="fa fa-backward noti-icon"></i>
+                    Geri Dön
+                </a>
+                <div class="followers-box full-width">
+
+
+                    <div class="followers-list">
+
+                        @if ((ViewBag.ara.Count > 0))
+                        {
+                            foreach (var item in ViewBag.ara)
+                            {
+                                                <div class="followers-body">
+                                                    <a href = "/Profil/view/@item.id" >
+                                                        <img class="img-responsive img-circle" src="@item.user_image_url" alt="">
+                                                        <div class="name-box">
+                                                            <h4>@item.name</h4>
+                                                            <span>@item.user_name</span>
+
+                                                        </div><!--/ name-box -->
+                                                    </a>
+                                                    <span>
+                                                        <a href="/Profil/ekle/@item.id" class="kafe-btn kafe-btn-mint-small pull-right btn-sm">Dost Ekle</a>
+                                                    </span>
+                                                </div><!--/ followers-body -->
+                                    }
+                                }
+                                else
+                                {
+                                            <div class="followers-body">
+
+                                                <div class="name-box">
+                                                    <h4>Sonuç yok...</h4>
+
+
+                                                </div><!--/ name-box -->
+
+                                            </div><!--/ followers-body -->
+                                        }
+
+
+
+
+                    </div><!--suggestions-list end-->
+                </div>
+
+            </div>
+
+        </div><!--/ row-->
+    </div><!--/ container -->
+</section>
+

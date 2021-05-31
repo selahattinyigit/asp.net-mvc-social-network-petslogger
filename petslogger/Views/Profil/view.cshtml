@@ -1,0 +1,238 @@
+﻿
+@{
+    ViewBag.Title = "view";
+    Layout = "~/Views/Sharet/site_layout.cshtml";
+}
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<style>
+    #drm {
+        display: none;
+    }
+
+    #dst {
+        display: none;
+    }
+
+    #istk {
+        display: none;
+    }
+</style>
+@foreach (var item in ViewBag.profil2)
+{
+    string drm = "pst";
+    <section class="profile-two">
+        <div class="container-fluid">
+            <div class="row">
+
+                <div class="col-lg-3">
+                    <aside id="leftsidebar" class="sidebar">
+                        <ul class="list">
+                            <li>
+                                <div class="user-info">
+                                    <div class="image">
+                                        <a href="photo_profile_two.html">
+                                            @if (item.user_image_url == "" || item.user_image_url == null)
+                                            {
+                                                <img src="~/img/profil/default.png" class="img-responsive img-circle" alt="User">
+
+                                            }
+                                            else
+                                            {
+                                                <img src="@item.user_image_url" class="img-responsive img-circle" alt="User">
+                                            }
+
+                                            <span class="online-status online"></span>
+                                        </a>
+                                    </div>
+                                    <div class="detail">
+                                        <h4>@item.name</h4>
+                                        <small>@item.user_name</small>
+                                    </div>
+
+                                </div>
+                            </li>
+                            <li>
+                                <small class="text-muted"><a id="btndrm">@ViewBag.post2.Count Gönderi <em class="fa fa-angle-right pull-right"></em></a> </small><br>
+                                <small class="text-muted"><a id="btndrm2">@ViewBag.dost2.Count Dost <em class="fa fa-angle-right pull-right"></em></a> </small><br>
+                                <hr>
+                                <small class="text-muted">Hakkında: </small>
+                                <p>@item.about</p>
+                                <hr>
+
+                            </li>
+                            <li>
+                                @if (ViewBag.istk2.Count > 0)
+                                {
+                                    foreach (var i in ViewBag.istk2)
+                                    {
+                                        if (i.status == false)
+                                        {
+                                            <a href="#" class="kafe-btn kafe-btn-mint">İstek Gönderildi</a>
+                                        }
+                                        else
+                                        {
+                                            <a href="#" class="kafe-btn kafe-btn-mint">Mesaj Gönder</a>
+                                        }
+                                    }
+                                }
+                                else
+                                {
+
+                                    <a href="/Profil/ekle/@item.id" class="kafe-btn kafe-btn-mint">Dost Ekle</a>
+
+                                }
+
+
+                                
+
+                            </li>
+                        </ul>
+                    </aside>
+                </div><!--/ col-lg-3-->
+                @if (ViewBag.istk2.Count > 0)
+                {
+                    <div id="pst" class="col-lg-9" style="background: #fff;">
+                        <br />
+                        <br />
+                        <div class="row">
+                            @foreach (var post in ViewBag.post2)
+                            {
+
+
+                                <div class="col-lg-3">
+                                    <a class="view" href="#" data-target="/Home/modal/@post.id">
+                                        <div class="explorebox" style="background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('@post.post_url') no-repeat; background-size: cover; background-position: center center; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover;">
+                                            <div class="explore-top">
+                                                <div class="explore-like"><i class="fa fa-heart"></i> <span>@post.tb_like.Count</span></div>
+
+                                            </div>
+                                        </div>
+
+                                    </a>
+                                </div>
+
+                            }
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                        </div><!--/ row -->
+
+
+                    </div>
+                    <div class="col-lg-9" id="dst" style="background: #fff;">
+                        <br />
+                        <br />
+                        <div class="row">
+                            <div class="suggestion-box full-width">
+                                <div class="suggestions-list">
+                                    @foreach (var dost in ViewBag.dost2)
+                                    {
+                                        <div class="suggestion-body">
+                                            <img class="img-responsive img-circle" src="@dost.tb_user1.user_image_url" alt="Image">
+                                            <div class="name-box">
+                                                <h4> @dost.tb_user1.name</h4>
+                                                <span>@dost.tb_user1.user_name</span>
+                                            </div>
+                                            <span> <button class="kafe-btn kafe-btn-mint-small">Dost Ekle</button> </span>
+                                        </div>
+
+                                    }
+
+                                </div>
+
+                            </div>
+                        </div>
+
+
+
+                    </div><!--/ row-->
+                }
+                else
+                {
+                    <div class="col-lg-9" style="background: #fff;">
+                        <br />
+                        <br />
+                        <div class="row">
+                            <div class="suggestion-box full-width">
+                                <h3>Profili Görmeniz için dost eklemelisiniz...</h3>
+                            </div>
+                        </div>
+                    </div>
+                }
+                <br />
+                <br />
+
+
+            </div>
+        </div><!--/ container -->
+    </section><!--/ profile -->
+
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+
+                </div><!--/ modal-body -->
+
+            </div><!--/ modal-content -->
+        </div><!--/ modal-dialog -->
+    </div><!--/ modal -->
+
+
+
+
+    <script type="text/javascript">
+        $(function () {
+            // a tagimizde bulunan .view classımıza click olduğunda
+            $("body").on("click", ".view", function () {
+                //data-target dan url mizi al
+                var url = $(this).data("target");
+                //bu urlimizi post et
+                $.post(url, function (data) { })
+                    //eğer işlemimiz başarılı bir şekilde gerçekleşirse
+                    .done(function (data) {
+                        //gelen datayı .modal-body mizin içerise html olarak ekle
+                        $("#myModal .modal-body").html(data);
+                        //sonra da modalimizi göster
+                        $("#myModal").modal("show");
+                    })
+                    //eğer işlem başarısız olursa
+                    .fail(function () {
+                        //modalımızın bodysine Error! yaz
+                        $("#myModal .modal-body").text("Error!!");
+                        //sonra da modalimizi göster
+                        $("#myModal").modal("show");
+                    })
+
+            });
+        })
+    </script>
+
+    <script>
+        var btnGizle = document.getElementById("btndrm2");
+        btnGizle.onclick = function () {
+
+            //display özelliği none yapılarak gizleme işlemi yapılır.
+            document.getElementById("pst").style.display = "none";
+
+
+            document.getElementById("dst").style.display = "block";
+
+        }
+        var btnGizle = document.getElementById("btndrm");
+        btnGizle.onclick = function () {
+
+            //display özelliği none yapılarak gizleme işlemi yapılır.
+            document.getElementById("pst").style.display = "block";
+            document.getElementById("dst").style.display = "none";
+
+
+        }
+
+
+    </script>
+
+}

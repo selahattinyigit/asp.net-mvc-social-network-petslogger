@@ -1,0 +1,197 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+
+    <!-- ==============================================
+    Title and Meta Tags
+    =============================================== -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Petslogger</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta property="og:title" content="">
+    <meta property="og:url" content="">
+    <meta property="og:description" content="">
+
+    <!-- ==============================================
+    Favicons
+    =============================================== -->
+    <link rel="icon" href="assets/img/logo.jpg">
+    <link rel="apple-touch-icon" href="img/favicons/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="~/Content/img/favicons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="~/Content/img/favicons/apple-touch-icon-114x114.png">
+
+    <!-- ==============================================
+    CSS
+    =============================================== -->
+    <link type="text/css" href="~/Content/assets\css\demos\photo.css" rel="stylesheet">
+
+
+
+    <!-- ==============================================
+    Feauture Detection
+    =============================================== -->
+    <script src="assets/js/modernizr-custom.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body onload="myFunction()">
+
+    <!-- ==============================================
+    Navigation Section
+    =============================================== -->
+    <style>
+        /* Center the loader */
+        #loader {
+            position: absolute;
+            z-index: 1;
+            overflow: hidden;
+            width: 200px;
+            height: 200px;
+            left: 50%;
+            top: 50%;
+            margin-left: -100px;
+            margin-top: -100px;
+        }
+       
+
+        #myDiv {
+            display: none;
+
+        }
+    </style>
+    <div id="loader" align="center">
+        
+        <img src="~/Content/assets/img/fluffs/load.png" >
+
+    </div>
+    <div style="display:none;" id="myDiv" class="">
+        <header class="tr-header" style="position:fixed;z-index:10000;right:0;left:0;">
+            <nav class="navbar navbar-default">
+
+                <div class="container-fluid ">
+
+                    <ul>
+
+                        <a class="navbar-brand" href="/">petslogger</a>
+                        <img src="~/Content/assets/img/fluffs/logoped.png">
+
+
+
+                        <li class="pull-right" style="margin-left:35px;">
+                            <a class="nav-icon nav navbar-nav" href="/Mesajlar/Index">
+                                <span class="badge badge-success badge-pill noti-icon-badge"> 4</span>
+                                <i class="fa fa-comment"> </i>
+
+                                <span> Mesaj</span>
+
+                            </a>
+
+
+
+
+
+                        </li>
+                        <li class=" pull-right" style="right:0px;">
+
+
+                            <a class="nav-icon nav navbar-nav" href="/Bildirimler/Index">
+                                <span class="badge badge-danger"> 4</span>
+                                <i class="fa fa-bell"> </i>
+
+                                <span> Bildirimler</span>
+
+                            </a>
+
+
+
+
+
+                        </li>
+                    </ul>
+
+                </div><!-- /.container -->
+
+            </nav><!-- /.navbar -->
+
+        </header><!-- Page Header -->
+        <!-- ==============================================
+    Navbar Second Section
+    =============================================== -->
+        <br />
+        <br />
+        <section class="nav-sec">
+            <div class="d-flex justify-content-between">
+                <div class="p-2 nav-icon-lg mint-green">
+                    <a class="nav-icon" href="/Home/Index">
+                        <em class="fa fa-home"> </em>
+                        <span> Anasayfa</span>
+                    </a>
+                </div>
+                <div class="p-2 nav-icon-lg clean-black">
+                    <a class="nav-icon" href="/Ara/Index">
+                        <em class="fa fa-search"> </em>
+                        <span> Arama</span>
+                    </a>
+                </div>
+                <div class="p-2 nav-icon-lg dark-black">
+                    <a class="nav-icon" href="/Yukle/Index">
+                        <em class="fa fa-upload"> </em>
+                        <span> Yükleme</span>
+                    </a>
+                </div>
+
+                <div class="p-2 nav-icon-lg dark-black">
+                    <a class="nav-icon" href="/Profil/Index">
+                        <em class="fa fa-user"> </em>
+                        <span> Profil</span>
+                    </a>
+
+                </div>
+            </div>
+        </section>
+
+        @RenderBody()
+      
+            <script src="~/Content/assets/js/jquery.min.js"></script>
+            <script src="~/Content/assets/js/bootstrap.min.js"></script>
+            <script src="~/Content/assets/js/base.js"></script>
+            <script src="~/Content/assets/plugins/slimscroll/jquery.slimscroll.js"></script>
+            <script>
+                var myVar;
+
+                function myFunction() {
+                    myVar = setTimeout(showPage, 2000);
+                }
+
+                function showPage() {
+                    document.getElementById("loader").style.display = "none";
+                    document.getElementById("myDiv").style.display = "block";
+                }
+            </script>
+            <script>
+                $('#Slim,#Slim2').slimScroll({
+                    height: "auto",
+                    position: 'right',
+                    railVisible: true,
+                    alwaysVisible: true,
+                    size: "8px",
+                });
+            </script>
+
+        </div>
+</body>
+</html>

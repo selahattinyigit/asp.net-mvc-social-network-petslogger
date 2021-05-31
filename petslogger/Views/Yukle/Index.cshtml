@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Sharet/site_layout.cshtml";
+}
+<br />
+<br />
+<br />
+<div class="container">
+    <div class="row">
+        <div class="row justify-content-center">
+           
+            <div class="col-md-12">
+                @using (Html.BeginForm("Index", "Yukle", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <textarea name="text" class="form-control no-border" rows="3" placeholder="Bir Açıklama girin..." maxlength="50"></textarea>
+
+                    <div class="box-footer clearfix">
+                        <ul class="nav nav-pills nav-sm">
+                            <li class="nav-item">
+                            <input name="post_url" accept=".png,.jpg,.jpeg" type="file" onchange="$('#resim')[0].src = window.URL.createObjectURL(this.files[0])" />
+                            </li>
+
+                        </ul>
+
+                        <input type="submit" value="Yükle" class="kafe-btn kafe-btn-mint-small pull-right btn-sm" />
+
+                    </div>
+
+                }
+            </div>
+            
+            <img id="resim" height="100%" width="100%" />
+            @if (TempData["post"] != null)
+            {
+                <p class="text-danger">
+                    @TempData["post"].ToString()
+                </p>}
+        </div>
+    </div>
+</div>
+

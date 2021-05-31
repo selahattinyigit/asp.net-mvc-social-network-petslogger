@@ -1,0 +1,136 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Sharet/site_layout.cshtml";
+}
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+<section class="newsfeed">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-lg-3"> </div>
+            <div class="col-lg-6">
+                @if (ViewBag.posts.Count > 0)
+                {
+
+
+                    foreach (var item in ViewBag.posts)
+                    {
+
+
+                        <div class="cardbox">
+
+                            <div class="cardbox-heading">
+
+
+
+                                <div class="media m-0 col-md-8 ">
+
+                                    <div class="d-flex mr-3">
+                                        <img class="img-responsive img-circle" src="@item.tb_user.user_image_url" alt="User">
+
+                                    </div>
+
+                                    <div class="media-body">
+                                        <a href="/Profil/view/@item.tb_user.id">
+                                            <p class="m-0"> @item.tb_user.user_name</p>
+                                            <small> <span> @item.since.ToShortTimeString()</span> </small>
+                                        </a>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="cardbox-item ">
+                                    <a class="view" href="#" data-target="/Home/modal/@item.id">
+                                        <img class="img-responsive" src="@item.post_url" alt="MaterialImg" style="height:400px;width:100%;">
+                                    </a>
+                                </div><!-- / cardbox-item -->
+                            </div>
+                            <div class="cardbox-like">
+                                <ul>
+                                    <li> <a href="#"> <i class="fa fa-heart"> </i> </a> <span> @item.tb_like.Count</span> </li>
+                                    <li> <a href="#" title="" class="com"> <i class="fa fa-comments"> </i> </a> <span class="span-last"> @item.tb_comment.Count</span> </li>
+                                </ul>
+                            </div><!-- / cardbox-like -->
+                        </div><!-- / cardbox -->
+                    }
+                }
+                else
+                {
+                    <div class="cardbox">
+                        <h3>Gönderi Yok</h3>
+                    </div>
+                }
+            </div>
+
+            <div class="col-lg-3">
+
+                <div class="suggestion-box full-width">
+                    <div class="suggestions-list">
+                        @foreach (var item in ViewBag.oneri)
+                        {
+
+                            <div class="suggestion-body">
+                                <img class="img-responsive img-circle" src="@item.user_image_url" alt="Image">
+                                <a href="/Profil/view/@item.id">
+                                    <div class="name-box">
+                                        <h4> @item.name</h4>
+                                        <span> @item.user_name</span>
+                                    </div>
+                                </a>
+                             
+                                <a href="/Profil/ekle/@item.id" class="kafe-btn kafe-btn-mint-small pull-right btn-sm">Dost Ekle</a>
+                            </div>
+
+
+
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+
+            </div><!--/ modal-body -->
+
+        </div><!--/ modal-content -->
+    </div><!--/ modal-dialog -->
+</div><!--/ modal -->
+
+
+<script type="text/javascript">
+    $(function () {
+        // a tagimizde bulunan .view classımıza click olduğunda
+        $("body").on("click", ".view", function () {
+            //data-target dan url mizi al
+            var url = $(this).data("target");
+            //bu urlimizi post et
+            $.post(url, function (data) { })
+                //eğer işlemimiz başarılı bir şekilde gerçekleşirse
+                .done(function (data) {
+                    //gelen datayı .modal-body mizin içerise html olarak ekle
+                    $("#myModal .modal-body").html(data);
+                    //sonra da modalimizi göster
+                    $("#myModal").modal("show");
+                })
+                //eğer işlem başarısız olursa
+                .fail(function () {
+                    //modalımızın bodysine Error! yaz
+                    $("#myModal .modal-body").text("Error!!");
+                    //sonra da modalimizi göster
+                    $("#myModal").modal("show");
+                })
+
+        });
+    })
+</script>
+<!-- ==============================================
+Scripts
+=============================================== -->

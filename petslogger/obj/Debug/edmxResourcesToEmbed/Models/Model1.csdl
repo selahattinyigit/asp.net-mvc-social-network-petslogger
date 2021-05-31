@@ -1,0 +1,336 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbPetsloggerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tb_comment">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_id" Type="Int32" />
+    <Property Name="post_id" Type="Int32" />
+    <Property Name="text" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="since" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tb_post" Relationship="Self.FK_tb_comment_tb_post" FromRole="tb_comment" ToRole="tb_post" />
+    <NavigationProperty Name="tb_notification" Relationship="Self.FK_tb_notification_tb_comment" FromRole="tb_comment" ToRole="tb_notification" />
+    <NavigationProperty Name="tb_user1" Relationship="dbPetsloggerModel.FK_tb_comment_tb_user1" FromRole="tb_comment" ToRole="tb_user" />
+  </EntityType>
+  <EntityType Name="tb_friend">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_id" Type="Int32" />
+    <Property Name="friend_id" Type="Int32" />
+    <Property Name="status" Type="Boolean" />
+    <NavigationProperty Name="tb_user" Relationship="Self.FK_tb_friend_tb_user" FromRole="tb_friend" ToRole="tb_user" />
+    <NavigationProperty Name="tb_user1" Relationship="Self.FK_tb_friend_tb_user1" FromRole="tb_friend" ToRole="tb_user" />
+    <NavigationProperty Name="tb_notification" Relationship="Self.FK_tb_notification_tb_friend" FromRole="tb_friend" ToRole="tb_notification" />
+  </EntityType>
+  <EntityType Name="tb_like">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_id" Type="Int32" />
+    <Property Name="post_id" Type="Int32" />
+    <NavigationProperty Name="tb_post" Relationship="Self.FK_tb_like_tb_post" FromRole="tb_like" ToRole="tb_post" />
+    <NavigationProperty Name="tb_user" Relationship="Self.FK_tb_like_tb_user" FromRole="tb_like" ToRole="tb_user" />
+    <NavigationProperty Name="tb_notification" Relationship="Self.FK_tb_notification_tb_like" FromRole="tb_like" ToRole="tb_notification" />
+  </EntityType>
+  <EntityType Name="tb_messages">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sender_id" Type="Int32" />
+    <Property Name="receiver_id" Type="Int32" />
+    <Property Name="text" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="since" Type="DateTime" Precision="3" />
+    <Property Name="show" Type="Boolean" />
+    <NavigationProperty Name="tb_user" Relationship="Self.FK_tb_messages_tb_user" FromRole="tb_messages" ToRole="tb_user" />
+    <NavigationProperty Name="tb_user1" Relationship="Self.FK_tb_messages_tb_user1" FromRole="tb_messages" ToRole="tb_user" />
+  </EntityType>
+  <EntityType Name="tb_notification">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sender_id" Type="Int32" />
+    <Property Name="receiver_id" Type="Int32" />
+    <Property Name="type" Type="Int32" />
+    <Property Name="action_id" Type="Int32" />
+    <Property Name="since" Type="DateTime" Precision="3" />
+    <Property Name="show" Type="Boolean" />
+    <NavigationProperty Name="tb_comment" Relationship="Self.FK_tb_notification_tb_comment" FromRole="tb_notification" ToRole="tb_comment" />
+    <NavigationProperty Name="tb_friend" Relationship="Self.FK_tb_notification_tb_friend" FromRole="tb_notification" ToRole="tb_friend" />
+    <NavigationProperty Name="tb_like" Relationship="Self.FK_tb_notification_tb_like" FromRole="tb_notification" ToRole="tb_like" />
+    <NavigationProperty Name="tb_user" Relationship="Self.FK_tb_notification_tb_user" FromRole="tb_notification" ToRole="tb_user" />
+    <NavigationProperty Name="tb_user1" Relationship="Self.FK_tb_notification_tb_user1" FromRole="tb_notification" ToRole="tb_user" />
+  </EntityType>
+  <EntityType Name="tb_post">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_id" Type="Int32" />
+    <Property Name="text" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="post_url" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="since" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tb_comment" Relationship="Self.FK_tb_comment_tb_post" FromRole="tb_post" ToRole="tb_comment" />
+    <NavigationProperty Name="tb_like" Relationship="Self.FK_tb_like_tb_post" FromRole="tb_post" ToRole="tb_like" />
+    <NavigationProperty Name="tb_user" Relationship="Self.FK_tb_post_tb_user" FromRole="tb_post" ToRole="tb_user" />
+  </EntityType>
+  <EntityType Name="tb_user">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="about" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="user_image_url" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tb_friend" Relationship="Self.FK_tb_friend_tb_user" FromRole="tb_user" ToRole="tb_friend" />
+    <NavigationProperty Name="tb_friend1" Relationship="Self.FK_tb_friend_tb_user1" FromRole="tb_user" ToRole="tb_friend" />
+    <NavigationProperty Name="tb_like" Relationship="Self.FK_tb_like_tb_user" FromRole="tb_user" ToRole="tb_like" />
+    <NavigationProperty Name="tb_messages" Relationship="Self.FK_tb_messages_tb_user" FromRole="tb_user" ToRole="tb_messages" />
+    <NavigationProperty Name="tb_messages1" Relationship="Self.FK_tb_messages_tb_user1" FromRole="tb_user" ToRole="tb_messages" />
+    <NavigationProperty Name="tb_notification" Relationship="Self.FK_tb_notification_tb_user" FromRole="tb_user" ToRole="tb_notification" />
+    <NavigationProperty Name="tb_notification1" Relationship="Self.FK_tb_notification_tb_user1" FromRole="tb_user" ToRole="tb_notification" />
+    <NavigationProperty Name="tb_post" Relationship="Self.FK_tb_post_tb_user" FromRole="tb_user" ToRole="tb_post" />
+    <NavigationProperty Name="tb_comment1" Relationship="dbPetsloggerModel.FK_tb_comment_tb_user1" FromRole="tb_user" ToRole="tb_comment" />
+  </EntityType>
+  <Association Name="FK_tb_comment_tb_post">
+    <End Role="tb_post" Type="Self.tb_post" Multiplicity="0..1" />
+    <End Role="tb_comment" Type="Self.tb_comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_post">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tb_comment">
+        <PropertyRef Name="post_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_notification_tb_comment">
+    <End Role="tb_comment" Type="Self.tb_comment" Multiplicity="0..1" />
+    <End Role="tb_notification" Type="Self.tb_notification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_comment">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tb_notification">
+        <PropertyRef Name="action_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_friend_tb_user">
+    <End Role="tb_user" Type="Self.tb_user" Multiplicity="0..1" />
+    <End Role="tb_friend" Type="Self.tb_friend" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_user">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tb_friend">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_friend_tb_user1">
+    <End Role="tb_user" Type="Self.tb_user" Multiplicity="0..1" />
+    <End Role="tb_friend" Type="Self.tb_friend" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_user">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tb_friend">
+        <PropertyRef Name="friend_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_notification_tb_friend">
+    <End Role="tb_friend" Type="Self.tb_friend" Multiplicity="0..1" />
+    <End Role="tb_notification" Type="Self.tb_notification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_friend">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tb_notification">
+        <PropertyRef Name="action_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_like_tb_post">
+    <End Role="tb_post" Type="Self.tb_post" Multiplicity="0..1" />
+    <End Role="tb_like" Type="Self.tb_like" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_post">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tb_like">
+        <PropertyRef Name="post_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_like_tb_user">
+    <End Role="tb_user" Type="Self.tb_user" Multiplicity="0..1" />
+    <End Role="tb_like" Type="Self.tb_like" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_user">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tb_like">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_notification_tb_like">
+    <End Role="tb_like" Type="Self.tb_like" Multiplicity="0..1" />
+    <End Role="tb_notification" Type="Self.tb_notification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_like">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tb_notification">
+        <PropertyRef Name="action_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_messages_tb_user">
+    <End Role="tb_user" Type="Self.tb_user" Multiplicity="0..1" />
+    <End Role="tb_messages" Type="Self.tb_messages" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_user">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tb_messages">
+        <PropertyRef Name="sender_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_messages_tb_user1">
+    <End Role="tb_user" Type="Self.tb_user" Multiplicity="0..1" />
+    <End Role="tb_messages" Type="Self.tb_messages" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_user">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tb_messages">
+        <PropertyRef Name="receiver_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_notification_tb_user">
+    <End Role="tb_user" Type="Self.tb_user" Multiplicity="0..1" />
+    <End Role="tb_notification" Type="Self.tb_notification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_user">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tb_notification">
+        <PropertyRef Name="sender_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_notification_tb_user1">
+    <End Role="tb_user" Type="Self.tb_user" Multiplicity="0..1" />
+    <End Role="tb_notification" Type="Self.tb_notification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_user">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tb_notification">
+        <PropertyRef Name="receiver_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_post_tb_user">
+    <End Role="tb_user" Type="Self.tb_user" Multiplicity="0..1" />
+    <End Role="tb_post" Type="Self.tb_post" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_user">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tb_post">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="dbPetsloggerEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tb_comment" EntityType="Self.tb_comment" />
+    <EntitySet Name="tb_friend" EntityType="Self.tb_friend" />
+    <EntitySet Name="tb_like" EntityType="Self.tb_like" />
+    <EntitySet Name="tb_messages" EntityType="Self.tb_messages" />
+    <EntitySet Name="tb_notification" EntityType="Self.tb_notification" />
+    <EntitySet Name="tb_post" EntityType="Self.tb_post" />
+    <EntitySet Name="tb_user" EntityType="Self.tb_user" />
+    <AssociationSet Name="FK_tb_comment_tb_post" Association="Self.FK_tb_comment_tb_post">
+      <End Role="tb_post" EntitySet="tb_post" />
+      <End Role="tb_comment" EntitySet="tb_comment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_notification_tb_comment" Association="Self.FK_tb_notification_tb_comment">
+      <End Role="tb_comment" EntitySet="tb_comment" />
+      <End Role="tb_notification" EntitySet="tb_notification" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_friend_tb_user" Association="Self.FK_tb_friend_tb_user">
+      <End Role="tb_user" EntitySet="tb_user" />
+      <End Role="tb_friend" EntitySet="tb_friend" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_friend_tb_user1" Association="Self.FK_tb_friend_tb_user1">
+      <End Role="tb_user" EntitySet="tb_user" />
+      <End Role="tb_friend" EntitySet="tb_friend" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_notification_tb_friend" Association="Self.FK_tb_notification_tb_friend">
+      <End Role="tb_friend" EntitySet="tb_friend" />
+      <End Role="tb_notification" EntitySet="tb_notification" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_like_tb_post" Association="Self.FK_tb_like_tb_post">
+      <End Role="tb_post" EntitySet="tb_post" />
+      <End Role="tb_like" EntitySet="tb_like" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_like_tb_user" Association="Self.FK_tb_like_tb_user">
+      <End Role="tb_user" EntitySet="tb_user" />
+      <End Role="tb_like" EntitySet="tb_like" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_notification_tb_like" Association="Self.FK_tb_notification_tb_like">
+      <End Role="tb_like" EntitySet="tb_like" />
+      <End Role="tb_notification" EntitySet="tb_notification" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_messages_tb_user" Association="Self.FK_tb_messages_tb_user">
+      <End Role="tb_user" EntitySet="tb_user" />
+      <End Role="tb_messages" EntitySet="tb_messages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_messages_tb_user1" Association="Self.FK_tb_messages_tb_user1">
+      <End Role="tb_user" EntitySet="tb_user" />
+      <End Role="tb_messages" EntitySet="tb_messages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_notification_tb_user" Association="Self.FK_tb_notification_tb_user">
+      <End Role="tb_user" EntitySet="tb_user" />
+      <End Role="tb_notification" EntitySet="tb_notification" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_notification_tb_user1" Association="Self.FK_tb_notification_tb_user1">
+      <End Role="tb_user" EntitySet="tb_user" />
+      <End Role="tb_notification" EntitySet="tb_notification" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_post_tb_user" Association="Self.FK_tb_post_tb_user">
+      <End Role="tb_user" EntitySet="tb_user" />
+      <End Role="tb_post" EntitySet="tb_post" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_comment_tb_user1" Association="dbPetsloggerModel.FK_tb_comment_tb_user1">
+      <End Role="tb_user" EntitySet="tb_user" />
+      <End Role="tb_comment" EntitySet="tb_comment" />
+    </AssociationSet>
+  </EntityContainer>
+  <Association Name="FK_tb_comment_tb_user1">
+    <End Type="dbPetsloggerModel.tb_user" Role="tb_user" Multiplicity="0..1" />
+    <End Type="dbPetsloggerModel.tb_comment" Role="tb_comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_user">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tb_comment">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

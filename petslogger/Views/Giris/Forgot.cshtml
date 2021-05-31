@@ -1,0 +1,131 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+
+    <!-- ==============================================
+    Title and Meta Tags
+    =============================================== -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta property="og:title" content="">
+    <meta property="og:url" content="">
+    <meta property="og:description" content="">
+
+    <!-- ==============================================
+    Favicons
+    =============================================== -->
+    <link rel="icon" href="~/Content/assets/img/logo.jpg">
+    <link rel="apple-touch-icon" href="~/Content/img/favicons/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="~/Content/img/favicons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="~/Content/img/favicons/apple-touch-icon-114x114.png">
+
+    <!-- ==============================================
+    CSS
+    =============================================== -->
+    <link type="text/css" href="~/Content/assets\css\demos\photo.css" rel="stylesheet">
+
+    <!-- ==============================================
+    Feauture Detection
+    =============================================== -->
+    <script src="assets/js/modernizr-custom.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body onload="myFunction()">
+    <style>
+        /* Center the loader */
+        #loader {
+            position: absolute;
+            z-index: 1;
+            overflow: hidden;
+            width: 200px;
+            height: 200px;
+            left: 50%;
+            top: 50%;
+            margin-left: -100px;
+            margin-top: -100px;
+        }
+
+
+        #myDiv {
+            display: none;
+        }
+    </style>
+    <div id="loader" align="center">
+
+        <img src="~/Content/assets/img/fluffs/load.png">
+    </div>
+    <!-- ==============================================
+    Header Section
+    =============================================== -->
+    <div style="display:none;" id="myDiv" class="">
+        <section class="login">
+            <div class="container">
+                <div class="banner-content">
+
+                    <h1><img src="~/Content/assets/img/fluffs/logoped.png"> Petslogger</h1>
+                    <form method="post" class="form-signin">
+                        <h3 class="form-signin-heading">Şifrenizi Mi Unuttunuz?</h3>
+                        <div class="form-group">
+                            <input name="email" type="text" class="form-control" placeholder="E-posta adresi">
+                        </div>
+                        <div class="form-group">
+                            <input name="username" type="text" class="form-control" placeholder="Kullanıcı Adı">
+                        </div>
+                     
+                        <button class="kafe-btn kafe-btn-mint btn-block" type="submit" name="subm">Şifremi Hatırlat</button>
+                        <br>
+                        <a class="btn btn-dark " href="/Giris/Login" role="button">Zaten hesabınız var mı? Buraya tıklayın.</a>
+                        <a class="btn btn-dark " href="/Giris/Register" role="button">Kayıt olmak için tıklayın.</a>
+                    </form>
+
+                </div><!--/. banner-content -->
+            </div><!-- /.container -->
+        </section>
+    </div>
+
+
+    <!-- ==============================================
+    Scripts
+    =============================================== -->
+    <script src="~/Content/assets\js\jquery.min.js"></script>
+    <script src="~/Content/assets\js\bootstrap.min.js"></script>
+    <script src="~/Content/assets\js\base.js"></script>
+    <script>
+        var myVar;
+
+        function myFunction() {
+            myVar = setTimeout(showPage, 2000);
+        }
+
+        function showPage() {
+            document.getElementById("loader").style.display = "none";
+            document.getElementById("myDiv").style.display = "block";
+        }
+    </script>
+    <script>
+        $('#Slim,#Slim2').slimScroll({
+            height: "auto",
+            position: 'right',
+            railVisible: true,
+            alwaysVisible: true,
+            size: "8px",
+        });
+    </script>
+</body>
+</html>
